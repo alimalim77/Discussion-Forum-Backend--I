@@ -8,4 +8,15 @@ const userRegister = async (req, res) => {
     : res.status(resp.code).send(resp);
 };
 
-module.exports = { userRegister };
+const userAll = async (req, res) => {
+  const resp = await UserService.allUsers();
+  res.status(resp.code).send(resp);
+};
+
+const userGet = async (req, res) => {
+  const params = req.params.username;
+  const resp = await UserService.getUser(params);
+  res.status(resp.code).send(resp);
+  // console.log(resp);
+};
+module.exports = { userRegister, userAll, userGet };
