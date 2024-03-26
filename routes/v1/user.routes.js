@@ -4,7 +4,11 @@ const userController = require("../../controllers/user.controller.js");
 const auth = require("../../middlewares/auth.js");
 const userValidation = require("../../validation/user.validation.js");
 
-router.post("/register", userController.userRegister);
+router.post(
+  "/register",
+  userValidation.validation,
+  userController.userRegister
+);
 // Validatiopn for Joi pending using the following technique
 //app.post("/register", userValidation.validation, userController.userRegister);
 
