@@ -22,7 +22,7 @@ const registerUser = async (body) => {
           reason: "Already Exists in DB",
         };
 
-      return { code: 500 };
+      return { code: 500, message: err.message };
     });
   return push;
 };
