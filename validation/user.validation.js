@@ -1,5 +1,6 @@
 const Joi = require("joi");
 
+// Created Joi schema for validation of the request object
 const schema = Joi.object().keys({
   fullName: Joi.string().max(50),
   username: Joi.string().max(25).required(),
@@ -8,6 +9,7 @@ const schema = Joi.object().keys({
     .required(),
 });
 
+// Validation function that sends error messages with response code on error else move to the next middleware
 const validation = (req, res, next) => {
   obj = req.body;
   const resp = schema.validate(obj);

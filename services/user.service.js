@@ -1,5 +1,9 @@
 const details = require("../models/user.model.js");
 
+// Service for registering the user
+// 200 - Successful registration
+// 409 - Already registered
+// 500 - Internal server error
 const registerUser = async (body) => {
   const push = await details
     .create(body)
@@ -23,6 +27,10 @@ const registerUser = async (body) => {
   return push;
 };
 
+// Service to get all the users
+// 201 - Successful fetching all the users
+// 404 - No users found
+// 500 - Internal server error
 const allUsers = async () => {
   const push = await details
     .find({})
@@ -36,6 +44,10 @@ const allUsers = async () => {
   return push;
 };
 
+// Service to get a particular user
+// 200 - Successful user fetch
+// 404 - User not found
+// 500 -Internal server error
 const getUser = async (username) => {
   const push = await details
     .find({ username: username })
@@ -48,7 +60,7 @@ const getUser = async (username) => {
       };
     })
     .catch((err) => {
-      return { code: 502, message: err.message };
+      return { code: 500, message: err.message };
     });
   return push;
 };
